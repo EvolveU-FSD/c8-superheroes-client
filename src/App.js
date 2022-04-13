@@ -1,47 +1,47 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import SuperheroData from "./components/SuperheroData";
-import superheroesList from "./superheroes.json";
+import SuperheroForm from "./components/SuperheroForm";
 
 function App() {
-  const [data, setData] = useState();
-  console.log(`superheroesList: ${JSON.stringify(superheroesList)}`);
-  // useEffect(() => {
-  //   getTimeFromServer();
-  // }, []);
+  const [superheroList, setSuperheroList] = useState();
+  const [showModal, setShowModal] = useState(false);
+  console.log(`superheroList: ${JSON.stringify(superheroList)}`);
+  useEffect(() => {
+    getSuperheroList();
+  }, []);
 
-  const getTimeFromServer = async () => {
+  const getSuperheroList = async () => {
     try {
-      let response = await fetch("/slow");
-      let vals = await response.json();
-      console.log(`vals is:`, vals);
-      return setData(vals.currentTime);
+      let response = await fetch("/superheroes");
+      let superheroes = await response.json();
+      console.log(`superheroes is:`, superheroes);
+      return setSuperheroList(superheroes);
     } catch (ex) {
       console.log(ex);
     }
   };
-  let ironMan = {
-    name: "Ironman",
-    superpowers: ["Superhuman strength", "Invulnerability"],
-    alterEgo: "Tony Stark",
-    durability: "Indestructible",
-  };
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Superheroes</h1>
       </header>
-      {superheroesList.map((superhero, index) => {
-        if (index < 2) {
+      {superheroList ? (
+        superheroList.map((superhero, index) => {
           return <SuperheroData superhero={superhero} />;
-        } 
-      })}
-      More stuff
-      {superheroesList.map((superhero, index) => {
-        if (index >= 2) {
-          return <SuperheroData superhero={superhero} />;
-        }
-      })}
+        })
+      ) : (
+        <div>Loading...</div>
+      )}
+      <button
+        onClick={() => {
+          setShowModal(true);
+        }}
+      >
+        Add New Superhero
+      </button>
+      {showModal && <SuperheroForm setShowModal={setShowModal} />}
     </div>
   );
 }
