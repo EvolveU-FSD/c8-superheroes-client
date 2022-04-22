@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import DetailComponent from "./components/DetailComponent";
 import SuperheroData from "./components/SuperheroData";
 import SuperheroForm from "./components/SuperheroForm";
 
@@ -23,8 +24,9 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className='App'>
+      <DetailComponent id={'6262cccd37daf00ca1a4dac2'} />
+      <header className='App-header'>
         <h1>Superheroes</h1>
       </header>
       {superheroList ? (
