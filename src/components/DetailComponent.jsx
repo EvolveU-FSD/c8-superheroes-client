@@ -8,7 +8,8 @@ const DetailComponent = (props) => {
     const getSuperhero = async () => {
       let response = await fetch(`/superheroes/${id}`);
       let data = await response.json();
-      setTimeout(() => setSuperhero(data), 3000);
+      // setTimeout(() => setSuperhero(data), 3000);
+      setSuperhero(data);
     };
 
     getSuperhero();

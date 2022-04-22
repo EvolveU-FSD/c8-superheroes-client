@@ -7,6 +7,7 @@ import SuperheroForm from "./components/SuperheroForm";
 function App() {
   const [superheroList, setSuperheroList] = useState();
   const [showModal, setShowModal] = useState(false);
+  const [id, setId] = useState('6262cccd37daf00ca1a4dac2');
   console.log(`superheroList: ${JSON.stringify(superheroList)}`);
   useEffect(() => {
     getSuperheroList();
@@ -25,13 +26,13 @@ function App() {
 
   return (
     <div className='App'>
-      <DetailComponent id={'6262cccd37daf00ca1a4dac2'} />
+      <DetailComponent id={id} />
       <header className='App-header'>
         <h1>Superheroes</h1>
       </header>
       {superheroList ? (
         superheroList.map((superhero, index) => {
-          return <SuperheroData superhero={superhero} />;
+          return <SuperheroData superhero={superhero} changeDetails={setId} />;
         })
       ) : (
         <div>Loading...</div>
