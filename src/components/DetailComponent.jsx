@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const DetailComponent = (props) => {
-  const id = props.id;
+  const params = useParams();
+  const id = params.id;
+  const navigate = useNavigate();
+
   const [superhero, setSuperhero] = useState();
 
   useEffect(() => {
@@ -30,6 +34,7 @@ const DetailComponent = (props) => {
         borderStyle: 'solid',
       }}
     >
+      <button onClick={() => navigate("/")}>GO TO LIST</button>
       <label>_id:</label> <span>{superhero._id}</span>
       <label>name:</label> <span>{superhero.name}</span>
       <label>superpowers:</label> <span>{superhero.superpowers}</span>

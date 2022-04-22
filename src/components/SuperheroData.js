@@ -1,11 +1,12 @@
+import { Link } from "react-router-dom";
+
 const SuperheroData = (props) => {
   const superhero = props.superhero;
-  const changeDetails = props.changeDetails;
 
   return (
     <div>
       <h2>
-        <a href="#" onClick={() => changeDetails(superhero._id)}>{superhero.name}</a>
+        <Link to={`/details/${superhero._id}`}>{superhero.name}</Link>
       </h2>
       <p>Alter Ego:</p>
       <p>{superhero.alterEgo}</p>
