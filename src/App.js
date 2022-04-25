@@ -1,20 +1,22 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import DetailComponent from "./components/DetailComponent";
-import SuperheroForm from "./components/SuperheroForm";
-import SuperheroList from "./components/SuperheroList";
+import DetailPage from "./pages/DetailPage";
+import CreateSuperheroPage from "./pages/CreateSuperheroPage";
+import HomePage from "./pages/HomePage";
+import EditSuperheroPage from "./pages/EditSuperheroPage";
 
 function App() {
   return (
-    <div className='App'>
-      <header className='App-header'>
+    <div className="App">
+      <header className="App-header">
         <h1>NAV BAR GOES HERE</h1>
       </header>
       <Routes>
-        <Route path='/' element={<SuperheroList />} />
-        <Route path='/details/:id' element={<DetailComponent />} />
-        <Route path='/add' element={<SuperheroForm />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/details/:id" element={<DetailPage />} />
+        <Route path="/add" element={<CreateSuperheroPage />} />
+        <Route path="/edit/:id" element={<EditSuperheroPage />} />
       </Routes>
     </div>
   );

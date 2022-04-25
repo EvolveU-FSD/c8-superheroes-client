@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import SuperheroData from './SuperheroData';
+import React, { useEffect, useState } from "react";
+import SuperheroData from "./SuperheroData";
 
 const SuperheroList = () => {
   const [superheroList, setSuperheroList] = useState();
   useEffect(() => {
     const getSuperheroList = async () => {
       try {
-        let response = await fetch('/superheroes');
+        let response = await fetch("/superheroes");
         let superheroes = await response.json();
         console.log(`superheroes is:`, superheroes);
         return setSuperheroList(superheroes);
@@ -19,7 +19,6 @@ const SuperheroList = () => {
 
   return (
     <div>
-      <h2>Superheroes List</h2>
       {superheroList ? (
         superheroList.map((superhero, index) => {
           return <SuperheroData superhero={superhero} />;

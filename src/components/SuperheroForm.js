@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const SuperheroForm = (props) => {
   const [superpowers, setSuperpowers] = useState([]);
@@ -6,38 +6,28 @@ const SuperheroForm = (props) => {
   const [alterEgo, setAlterEgo] = useState("");
   const [durability, setDurability] = useState("");
   const [superpowerToAdd, setSuperpowerToAdd] = useState("");
-  const setShowModal = props.setShowModal;
+  const onFormSubmit = props.onFormSubmit;
+  const initialValues = props.initialValues;
+  const buttonText = props.buttonText;
+
+  useEffect(() => {
+    if (initialValues) {
+      setName(initialValues.name);
+      setAlterEgo(initialValues.alterEgo);
+      setDurability(initialValues.durability);
+      setSuperpowers(initialValues.superpowers);
+
+      console.log(`initialValues is:`, initialValues);
+    }
+  }, [initialValues]);
   const addSuperpower = () => {
     setSuperpowers((curr) => {
       return [...curr, superpowerToAdd];
     });
   };
-  const onFormSubmit = async () => {
-    const newSuperhero = {
-      name: name,
-      alterEgo: alterEgo,
-      durability: durability,
-      superpowers: superpowers,
-    };
-    const data = JSON.stringify(newSuperhero);
-    console.log(`creating new superhero: ${data}`);
-    const response = await fetch("/superheroes", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: data,
-    });
-    if (response.status === 200) {
-      console.log("success");
-      setShowModal(false);
-    } else {
-      alert("error creating superhero");
-    }
-  };
+
   return (
     <div>
-      <h2>Add New Superhero</h2>
       <div>
         <label>Name:</label>
         <input
@@ -83,7 +73,18 @@ const SuperheroForm = (props) => {
         />
         <button onClick={addSuperpower}>Add Superpower</button>
         <br />
-        <button onClick={onFormSubmit}>Submit</button>
+        <button
+          onClick={() =>
+            onFormSubmit({
+              name: name,
+              superpowers: superpowers,
+              alterEgo: alterEgo,
+              durability: durability,
+            })
+          }
+        >
+          {buttonText}
+        </button>
       </div>
     </div>
   );

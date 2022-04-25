@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const DetailComponent = (props) => {
   const params = useParams();
@@ -27,11 +27,11 @@ const DetailComponent = (props) => {
   return (
     <div
       style={{
-        display: 'grid',
-        gridTemplate: '2fr 3fr',
-        borderColor: 'red',
+        display: "grid",
+        gridTemplate: "2fr 3fr",
+        borderColor: "red",
         borderWidth: 2,
-        borderStyle: 'solid',
+        borderStyle: "solid",
       }}
     >
       <button onClick={() => navigate("/")}>GO TO LIST</button>
@@ -40,6 +40,7 @@ const DetailComponent = (props) => {
       <label>superpowers:</label> <span>{superhero.superpowers}</span>
       <label>alterEgo:</label> <span>{superhero.alterEgo}</span>
       <label>durability:</label> <span>{superhero.durability}</span>
+      <button onClick={() => navigate("/edit/" + superhero._id)}>EDIT</button>
     </div>
   );
 };
