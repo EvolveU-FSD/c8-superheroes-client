@@ -18,7 +18,9 @@ const EditSuperheroPage = () => {
 
     getSuperhero();
   }, [id]);
-
+  const onFormCancel = () => {
+    navigate(`/details/${id}`);
+  };
   const onFormSubmit = async (superhero) => {
     const data = JSON.stringify(superhero);
     let response = await fetch(`/superheroes/${id}`, {
@@ -43,6 +45,7 @@ const EditSuperheroPage = () => {
         initialValues={superhero}
         onFormSubmit={onFormSubmit}
         buttonText={"Update Superhero"}
+        onFormCancel={onFormCancel}
       />
     </Box>
   );

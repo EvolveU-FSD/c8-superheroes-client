@@ -9,6 +9,7 @@ import {
   ListSubheader,
   Button,
 } from "@mui/material";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 const SuperheroForm = (props) => {
   const [superpowers, setSuperpowers] = useState([]);
   const [name, setName] = useState("");
@@ -18,6 +19,7 @@ const SuperheroForm = (props) => {
   const onFormSubmit = props.onFormSubmit;
   const initialValues = props.initialValues;
   const buttonText = props.buttonText;
+  const onFormCancel = props.onFormCancel;
 
   useEffect(() => {
     if (initialValues) {
@@ -33,6 +35,7 @@ const SuperheroForm = (props) => {
     setSuperpowers((curr) => {
       return [...curr, superpowerToAdd];
     });
+    setSuperpowerToAdd("");
   };
 
   return (
@@ -73,7 +76,19 @@ const SuperheroForm = (props) => {
         <List>
           <ListSubheader>Superpowers</ListSubheader>
           {superpowers.map((superpower, index) => {
-            return <ListItem>{superpower}</ListItem>;
+            return (
+              <ListItem>
+                <Typography>{superpower}</Typography>
+                <DeleteForeverIcon
+                  color="error"
+                  onClick={() => {
+                    setSuperpowers((curr) => {
+                      return curr.filter((_, i) => i !== index);
+                    });
+                  }}
+                />
+              </ListItem>
+            );
           })}
         </List>
         <TextField
@@ -102,6 +117,7 @@ const SuperheroForm = (props) => {
         >
           {buttonText}
         </Button>
+        <Button onClick={onFormCancel}>Cancel</Button>
       </Box>
     </Container>
   );

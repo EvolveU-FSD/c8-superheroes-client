@@ -74,3 +74,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 Ability to remove super powers
 Clear text field after adding super power
 Nav Bar
+Cancel Button in Create/Edit Superhero Form

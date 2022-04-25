@@ -5,6 +5,9 @@ import SuperheroForm from "../components/SuperheroForm";
 
 const CreateSuperheroPage = () => {
   const navigate = useNavigate();
+  const onFormCancel = () => {
+    navigate("/");
+  };
   const onFormSubmit = async (superhero) => {
     const newSuperhero = {
       name: superhero.name,
@@ -34,6 +37,7 @@ const CreateSuperheroPage = () => {
       <SuperheroForm
         onFormSubmit={onFormSubmit}
         buttonText={"Create Superhero"}
+        onFormCancel={onFormCancel}
       />
     </Box>
   );
