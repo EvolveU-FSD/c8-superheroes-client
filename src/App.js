@@ -5,12 +5,13 @@ import DetailPage from "./pages/DetailPage";
 import CreateSuperheroPage from "./pages/CreateSuperheroPage";
 import HomePage from "./pages/HomePage";
 import EditSuperheroPage from "./pages/EditSuperheroPage";
+import NavBar from "./components/NavBar";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>NAV BAR GOES HERE</h1>
+        <NavBar />
       </header>
       <Routes>
         <Route path="/" element={<HomePage />} />
