@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import SuperheroForm from "../components/SuperheroForm";
@@ -36,14 +37,14 @@ const EditSuperheroPage = () => {
   };
 
   return (
-    <div>
+    <Box mt={3}>
       <h2>Edit Superhero</h2>
       <SuperheroForm
         initialValues={superhero}
         onFormSubmit={onFormSubmit}
         buttonText={"Update Superhero"}
       />
-    </div>
+    </Box>
   );
 };
 

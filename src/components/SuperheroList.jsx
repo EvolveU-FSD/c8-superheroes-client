@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SuperheroData from "./SuperheroData";
+import { Grid, Typography } from "@mui/material";
 
 const SuperheroList = () => {
   const [superheroList, setSuperheroList] = useState();
@@ -18,15 +19,21 @@ const SuperheroList = () => {
   }, []);
 
   return (
-    <div>
+    <Grid container>
       {superheroList ? (
         superheroList.map((superhero, index) => {
-          return <SuperheroData superhero={superhero} />;
+          return (
+            <Grid xs={12} sm={6} md={3} item>
+              <SuperheroData superhero={superhero} />
+            </Grid>
+          );
         })
       ) : (
-        <div>Loading...</div>
+        <Typography component="div" variant="h3">
+          Loading...
+        </Typography>
       )}
-    </div>
+    </Grid>
   );
 };
 

@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from "react";
-
+import {
+  Container,
+  TextField,
+  Typography,
+  Box,
+  List,
+  ListItem,
+  ListSubheader,
+  Button,
+} from "@mui/material";
 const SuperheroForm = (props) => {
   const [superpowers, setSuperpowers] = useState([]);
   const [name, setName] = useState("");
@@ -27,53 +36,61 @@ const SuperheroForm = (props) => {
   };
 
   return (
-    <div>
-      <div>
-        <label>Name:</label>
-        <input
+    <Container sx={{ mt: 3 }}>
+      <Box
+        display="flex"
+        flexDirection="column"
+        mb={3}
+        sx={{ width: "50%", margin: "auto" }}
+      >
+        <TextField
+          label="Name"
+          variant="standard"
           type="text"
           value={name}
           onChange={(event) => {
             setName(event.target.value);
           }}
         />
-        <br />
-        <label>Alter Ego:</label>
-        <input
+        <TextField
+          label="Alter Ego"
+          variant="standard"
           type="text"
           value={alterEgo}
           onChange={(event) => {
             setAlterEgo(event.target.value);
           }}
         />
-        <br />
-
-        <label>Durability:</label>
-        <input
+        <TextField
+          label="Durability"
+          variant="standard"
           type="text"
           value={durability}
           onChange={(event) => {
             setDurability(event.target.value);
           }}
         />
-        <br />
-
-        <label>Superpowers:</label>
-        <ul>
+        <List>
+          <ListSubheader>Superpowers</ListSubheader>
           {superpowers.map((superpower, index) => {
-            return <li>{superpower}</li>;
+            return <ListItem>{superpower}</ListItem>;
           })}
-        </ul>
-        <input
+        </List>
+        <TextField
+          label="Superpower To Add"
+          variant="standard"
           type="text"
           value={superpowerToAdd}
           onChange={(event) => {
             setSuperpowerToAdd(event.target.value);
           }}
         />
-        <button onClick={addSuperpower}>Add Superpower</button>
+        <Button variant="outlined" onClick={addSuperpower}>
+          Add Superpower
+        </Button>
         <br />
-        <button
+        <Button
+          variant="contained"
           onClick={() =>
             onFormSubmit({
               name: name,
@@ -84,9 +101,9 @@ const SuperheroForm = (props) => {
           }
         >
           {buttonText}
-        </button>
-      </div>
-    </div>
+        </Button>
+      </Box>
+    </Container>
   );
 };
 
