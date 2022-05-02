@@ -13,6 +13,17 @@ export default function NavBar() {
         <Link component={RouterLink} color="white" underline="none" to="/add">
           <Button color="inherit">Add Superhero</Button>
         </Link>
+        <Link component={RouterLink} color="white" underline="none" to="/login">
+          <Button color="inherit">Login</Button>
+        </Link>
+        <Link
+          component={RouterLink}
+          color="white"
+          underline="none"
+          to="/logout"
+        >
+          <Button color="inherit">Logout</Button>
+        </Link>
       </Toolbar>
     </AppBar>
   );

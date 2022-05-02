@@ -6,6 +6,8 @@ import CreateSuperheroPage from "./pages/CreateSuperheroPage";
 import HomePage from "./pages/HomePage";
 import EditSuperheroPage from "./pages/EditSuperheroPage";
 import NavBar from "./components/NavBar";
+import Logout from "./components/Logout";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/details/:id" element={<DetailPage />} />
         <Route path="/add" element={<CreateSuperheroPage />} />
         <Route path="/edit/:id" element={<EditSuperheroPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/logout" element={<Logout />} />
       </Routes>
     </div>
   );
