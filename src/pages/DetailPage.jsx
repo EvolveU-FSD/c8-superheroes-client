@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import AuthContext from "../components/AuthContext";
 const DataItem = (props) => {
   return (
     <Box display="flex" flexDirection="row" justifyContent="space-between">
@@ -12,9 +13,9 @@ const DetailComponent = (props) => {
   const params = useParams();
   const id = params.id;
   const navigate = useNavigate();
-
+  const authContext = useContext(AuthContext);
   const [superhero, setSuperhero] = useState();
-  const loggedInUser = props.loggedInUser;
+  const loggedInUser = authContext.loggedInUser;
   const canEdit = loggedInUser?.isAgent || loggedInUser?.superheroId === id;
   useEffect(() => {
     const getSuperhero = async () => {

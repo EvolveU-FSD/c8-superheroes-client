@@ -1,10 +1,13 @@
 import { Button, Container, TextField } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "./AuthContext";
 
-const LoginForm = (props) => {
-  const setLoggedInUser = props.setLoggedInUser;
+const LoginForm = () => {
+  const authContext = useContext(AuthContext);
+  const login = authContext.login;
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -22,7 +25,7 @@ const LoginForm = (props) => {
 
     if (response.status === 200) {
       const userData = await response.json();
-      setLoggedInUser(userData);
+      login(userData);
       navigate("/");
     } else {
       alert("Login Failed");

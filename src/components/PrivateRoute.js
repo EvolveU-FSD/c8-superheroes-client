@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Navigate, Route } from "react-router-dom";
+import AuthContext from "./AuthContext";
 
 const PrivateRoute = (props) => {
-  const loggedInUser = props.loggedInUser;
+  const authContext = useContext(AuthContext);
+
+  const loggedInUser = authContext.loggedInUser;
+  const loading = authContext.loading;
+
   const mustBeAgent = props.mustBeAgent;
   const element = props.element;
-  const loading = props.loading;
+
   if (loading) {
     return <div>Loading...</div>;
   }

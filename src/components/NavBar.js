@@ -3,8 +3,11 @@ import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import { Link as RouterLink } from "react-router-dom";
 import { Link, Typography } from "@mui/material";
+import { useContext } from "react";
+import AuthContext from "./AuthContext";
 export default function NavBar(props) {
-  const loggedInUser = props.loggedInUser;
+  const authContext = useContext(AuthContext);
+  const loggedInUser = authContext.loggedInUser;
   const isAgent = loggedInUser?.isAgent;
   return (
     <AppBar position="static">

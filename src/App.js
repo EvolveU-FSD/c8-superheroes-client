@@ -9,65 +9,33 @@ import NavBar from "./components/NavBar";
 import Logout from "./components/Logout";
 import LoginPage from "./pages/LoginPage";
 import PrivateRoute from "./components/PrivateRoute";
+import AuthProvider from "./components/AuthProvider";
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState();
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const getUser = async () => {
-      const response = await fetch("/auth/loggedInUser");
-      const userData = await response.json();
-      setLoggedInUser(userData);
-      setLoading(false);
-    };
-    getUser();
-  }, []);
-
-  console.log(`logged in user is ${JSON.stringify(loggedInUser)}`);
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <NavBar loggedInUser={loggedInUser} />
-      </header>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route
-          path="/details/:id"
-          element={<DetailPage loggedInUser={loggedInUser} />}
-        />
-        <Route
-          path="/add"
-          element={
-            <PrivateRoute
-              mustBeAgent
-              loading={loading}
-              loggedInUser={loggedInUser}
-              element={<CreateSuperheroPage />}
-            />
-          }
-        />
-        <Route
-          path="/edit/:id"
-          element={
-            <PrivateRoute
-              loggedInUser={loggedInUser}
-              loading={loading}
-              element={<EditSuperheroPage />}
-            />
-          }
-        />
-        <Route
-          path="/login"
-          element={<LoginPage setLoggedInUser={setLoggedInUser} />}
-        />
-        <Route
-          path="/logout"
-          element={<Logout setLoggedInUser={setLoggedInUser} />}
-        />
-      </Routes>
-    </div>
+    <AuthProvider>
+      <div className="App">
+        <header className="App-header">
+          <NavBar />
+        </header>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/details/:id" element={<DetailPage />} />
+          <Route
+            path="/add"
+            element={
+              <PrivateRoute mustBeAgent element={<CreateSuperheroPage />} />
+            }
+          />
+          <Route
+            path="/edit/:id"
+            element={<PrivateRoute element={<EditSuperheroPage />} />}
+          />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/logout" element={<Logout />} />
+        </Routes>
+      </div>
+    </AuthProvider>
   );
 }
 
