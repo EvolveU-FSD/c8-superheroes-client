@@ -14,7 +14,8 @@ const DetailComponent = (props) => {
   const navigate = useNavigate();
 
   const [superhero, setSuperhero] = useState();
-
+  const loggedInUser = props.loggedInUser;
+  const canEdit = loggedInUser?.isAgent || loggedInUser?.superheroId === id;
   useEffect(() => {
     const getSuperhero = async () => {
       let response = await fetch(`/superheroes/${id}`);
@@ -59,12 +60,14 @@ const DetailComponent = (props) => {
         <Typography variant="label">durability:</Typography>{" "}
         <Typography variant="span">{superhero.durability}</Typography>
       </DataItem>
-      <Button
-        variant="contained"
-        onClick={() => navigate("/edit/" + superhero._id)}
-      >
-        EDIT
-      </Button>
+      {canEdit && (
+        <Button
+          variant="contained"
+          onClick={() => navigate("/edit/" + superhero._id)}
+        >
+          EDIT
+        </Button>
+      )}
     </Box>
   );
 };

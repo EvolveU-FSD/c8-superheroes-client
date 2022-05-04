@@ -3,7 +3,8 @@ import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+  const setLoggedInUser = props.setLoggedInUser;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -18,7 +19,10 @@ const LoginForm = () => {
       },
       body: data,
     });
+
     if (response.status === 200) {
+      const userData = await response.json();
+      setLoggedInUser(userData);
       navigate("/");
     } else {
       alert("Login Failed");
