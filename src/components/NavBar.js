@@ -17,7 +17,7 @@ export default function NavBar(props) {
         </Link>
         {isAgent && (
           <Link component={RouterLink} color="white" underline="none" to="/add">
-            <Button color="inherit">Add Superhero</Button>
+            <Button color="inherit">Create New Superhero</Button>
           </Link>
         )}
         {!loggedInUser && (
