@@ -20,7 +20,7 @@ const Logout = () => {
       }
     };
     logoutUser();
-  }, []);
+  }, [logout, navigate]);
 
   return null;
 };
